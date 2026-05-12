@@ -62,6 +62,11 @@ def generate_halfdeckade_html(csv_file, output_file):
     # Definiere alle möglichen Halbdekaden
     halfdeckade_order = ["Alle Alter"] + [f"{i}-{i+4}" for i in range(0, 100, 5)] + ["100+"]
 
+    # Berechne Sterbewahrscheinlichkeit pro einzelnes Alter für 2024 (für Chart)
+    data_2024 = filtered[filtered['Jahr'] == 2024].sort_values('Alter')
+    ages_for_chart = data_2024['Alter'].astype(int).tolist()
+    mortality_for_chart = (data_2024['Sterbewahrscheinlichkeit (q(x))'] * 100).tolist()
+
     # HTML-Tabelle erstellen
     html_content = """<!DOCTYPE html>
 <html lang="de">
@@ -69,6 +74,10 @@ def generate_halfdeckade_html(csv_file, output_file):
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kumulative Sterbewahrscheinlichkeit pro Lebenshalbdekade 2016-2024</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <style>
+        canvas { max-height: 400px !important; }
+    </style>
     <style>
         * {
             margin: 0;
@@ -275,6 +284,14 @@ def generate_halfdeckade_html(csv_file, output_file):
             <br/>Die Gruppe "100+" enthält nur Alter 100 (keine Daten für 101+ verfügbar)
         </div>
 
+        <div style="background-color: white; padding: 20px; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <h2 style="color: #2c3e50; margin-bottom: 15px;">📈 Sterbewahrscheinlichkeit nach Alter (2024)</h2>
+            <canvas id="mortalityChart" height="80"></canvas>
+            <p style="text-align: center; color: #7f8c8d; margin-top: 10px; font-size: 12px;">
+                Jahressterbewahrscheinlichkeit q(x) - wie sich das Sterberisiko mit dem Alter erhöht
+            </p>
+        </div>
+
         <div class="table-wrapper">
             <table>
                 <thead>
@@ -395,6 +412,57 @@ def generate_halfdeckade_html(csv_file, output_file):
             </ul>
         </div>
     </div>
+
+    <script>
+    const ctx = document.getElementById('mortalityChart').getContext('2d');
+    const mortalityChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: """ + str(ages_for_chart) + """,
+            datasets: [{
+                label: 'Sterbewahrscheinlichkeit (%)',
+                data: """ + str([round(x, 4) for x in mortality_for_chart]) + """,
+                borderColor: '#e74c3c',
+                backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                borderWidth: 2,
+                tension: 0.4,
+                fill: true,
+                pointRadius: 3,
+                pointBackgroundColor: '#e74c3c',
+                pointBorderColor: '#fff',
+                pointBorderWidth: 1,
+                pointHoverRadius: 5
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: { font: { size: 12 } }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Sterbewahrscheinlichkeit (%)'
+                    },
+                    ticks: { callback: function(value) { return value.toFixed(2) + '%'; } }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Alter (Jahre)'
+                    }
+                }
+            }
+        }
+    });
+    </script>
 </body>
 </html>
 """
