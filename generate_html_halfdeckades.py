@@ -53,8 +53,14 @@ def generate_halfdeckade_html(csv_file, output_file):
 
     pivot = result.pivot(index='Lebenshalbdekade', columns='Jahr', values='Sterbewahrscheinlichkeit')
 
+    # Berechne Gesamtsterbewahrscheinlichkeit über alle Alter pro Jahr
+    all_ages_total = filtered.groupby('Jahr').apply(
+        lambda group: 1 - np.prod(1 - group['Sterbewahrscheinlichkeit (q(x))'])
+    )
+    pivot.loc['Alle Alter'] = all_ages_total
+
     # Definiere alle möglichen Halbdekaden
-    halfdeckade_order = [f"{i}-{i+4}" for i in range(0, 100, 5)] + ["100+"]
+    halfdeckade_order = ["Alle Alter"] + [f"{i}-{i+4}" for i in range(0, 100, 5)] + ["100+"]
 
     # HTML-Tabelle erstellen
     html_content = """<!DOCTYPE html>
@@ -176,6 +182,17 @@ def generate_halfdeckade_html(csv_file, output_file):
             font-style: italic;
         }
 
+        tr.total td {
+            background-color: #f0f8ff !important;
+            font-weight: bold;
+            border-top: 3px solid #2c3e50;
+            border-bottom: 3px solid #2c3e50;
+        }
+
+        tr.total td.halfdeckade {
+            background-color: #d4e6f1 !important;
+        }
+
         tbody tr:nth-child(odd) {
             background-color: #f8f9fa;
         }
@@ -292,7 +309,9 @@ def generate_halfdeckade_html(csv_file, output_file):
     for halfdeckade in halfdeckade_order:
         row_data = pivot.loc[halfdeckade] if halfdeckade in pivot.index else None
 
-        html_content += f"""                <tr>
+        # Markiere "Alle Alter"-Zeile mit CSS-Klasse
+        row_class = ' class="total"' if halfdeckade == "Alle Alter" else ''
+        html_content += f"""                <tr{row_class}>
                     <td class="halfdeckade">{halfdeckade}</td>
 """
 
