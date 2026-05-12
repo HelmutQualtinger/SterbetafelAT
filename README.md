@@ -79,27 +79,27 @@ Die Analyse zeigt:
 | Altersgruppe | 2016 | 2017 | 2018 | 2019 | 2020 | 2021 | 2022 | 2023 | 2024 |
 |---|---|---|---|---|---|---|---|---|---|
 | 0-4 | — | — | — | — | — | — | — | — | — |
-| 5-9 | — | -27,70% | +21,66% | -1,37% | -13,89% | -6,45% | +34,47% | -8,97% | +23,93% |
-| 10-14 | — | +19,22% | -18,27% | +27,62% | -8,24% | -23,59% | +55,85% | -10,37% | -31,57% |
-| 15-19 | — | -7,52% | -1,11% | -1,87% | +6,10% | +6,11% | +5,41% | +15,09% | -6,41% |
-| 20-24 | — | -11,35% | +11,20% | +0,57% | -7,44% | +18,55% | +0,26% | -3,64% | +1,35% |
-| 25-29 | — | +7,15% | -2,47% | +0,76% | -18,36% | +17,87% | +8,36% | -10,13% | +4,30% |
-| 30-34 | — | -10,72% | +10,26% | +4,36% | -1,33% | +1,16% | -6,84% | -0,20% | +6,33% |
-| 35-39 | — | +2,60% | +1,49% | -3,96% | +1,07% | +11,93% | -1,08% | +1,22% | +6,20% |
-| 40-44 | — | -1,73% | +9,97% | -10,49% | +8,15% | -2,39% | -1,69% | -2,78% | +8,56% |
-| 45-49 | — | -5,23% | +2,85% | +2,47% | -9,73% | +11,35% | -6,64% | +3,62% | -7,05% |
-| 50-54 | — | +0,83% | -2,83% | -5,97% | +3,41% | +6,50% | -8,98% | -1,44% | -4,90% |
-| 55-59 | — | -3,82% | +2,64% | -9,77% | +4,07% | -0,41% | -3,11% | -6,13% | -1,72% |
-| 60-64 | — | -3,00% | -1,97% | -3,50% | +5,24% | +4,35% | -2,88% | -6,35% | -5,05% |
-| 65-69 | — | -4,65% | +0,99% | -1,66% | +1,77% | +4,70% | -3,11% | -7,91% | -0,38% |
-| 70-74 | — | +1,58% | -0,37% | -1,94% | +6,65% | +1,21% | -4,52% | -3,27% | -4,54% |
-| 75-79 | — | -0,80% | -0,43% | -1,04% | +12,01% | -0,03% | -0,16% | -2,95% | -3,20% |
-| 80-84 | — | +1,05% | -1,57% | -3,04% | +7,05% | -2,72% | +0,25% | -3,46% | -2,01% |
-| 85-89 | — | +1,91% | -1,54% | -1,06% | +4,52% | -1,59% | +0,77% | -3,57% | -3,00% |
-| 90-94 | — | +1,11% | +0,24% | -0,51% | +1,79% | -1,05% | +1,03% | -1,04% | -1,74% |
-| 95-99 | — | +0,07% | -0,11% | -0,27% | +0,59% | +0,08% | +0,52% | -0,75% | -0,53% |
-| 100+ | — | — | -4,09% | +5,71% | -1,50% | -1,00% | +4,91% | -4,18% | -1,05% |
-| **Alle Alter (0–100)** | — | **+12,01%** | **-1,31%** | **-1,32%** | **+6,04%** | **-1,23%** | **+4,10%** | **-6,31%** | **-4,41%** |
+| 5-9 | — | -27,70% | <span style="color: red; font-weight: bold;">+21,66%</span> | -1,37% | -13,89% | -6,45% | <span style="color: red; font-weight: bold;">+34,47%</span> | -8,97% | <span style="color: red; font-weight: bold;">+23,93%</span> |
+| 10-14 | — | <span style="color: red; font-weight: bold;">+19,22%</span> | -18,27% | <span style="color: red; font-weight: bold;">+27,62%</span> | -8,24% | -23,59% | <span style="color: red; font-weight: bold;">+55,85%</span> | -10,37% | -31,57% |
+| 15-19 | — | -7,52% | -1,11% | -1,87% | <span style="color: red; font-weight: bold;">+6,10%</span> | <span style="color: red; font-weight: bold;">+6,11%</span> | <span style="color: red; font-weight: bold;">+5,41%</span> | <span style="color: red; font-weight: bold;">+15,09%</span> | -6,41% |
+| 20-24 | — | -11,35% | <span style="color: red; font-weight: bold;">+11,20%</span> | <span style="color: red; font-weight: bold;">+0,57%</span> | -7,44% | <span style="color: red; font-weight: bold;">+18,55%</span> | <span style="color: red; font-weight: bold;">+0,26%</span> | -3,64% | <span style="color: red; font-weight: bold;">+1,35%</span> |
+| 25-29 | — | <span style="color: red; font-weight: bold;">+7,15%</span> | -2,47% | <span style="color: red; font-weight: bold;">+0,76%</span> | -18,36% | <span style="color: red; font-weight: bold;">+17,87%</span> | <span style="color: red; font-weight: bold;">+8,36%</span> | -10,13% | <span style="color: red; font-weight: bold;">+4,30%</span> |
+| 30-34 | — | -10,72% | <span style="color: red; font-weight: bold;">+10,26%</span> | <span style="color: red; font-weight: bold;">+4,36%</span> | -1,33% | <span style="color: red; font-weight: bold;">+1,16%</span> | -6,84% | -0,20% | <span style="color: red; font-weight: bold;">+6,33%</span> |
+| 35-39 | — | <span style="color: red; font-weight: bold;">+2,60%</span> | <span style="color: red; font-weight: bold;">+1,49%</span> | -3,96% | <span style="color: red; font-weight: bold;">+1,07%</span> | <span style="color: red; font-weight: bold;">+11,93%</span> | -1,08% | <span style="color: red; font-weight: bold;">+1,22%</span> | <span style="color: red; font-weight: bold;">+6,20%</span> |
+| 40-44 | — | -1,73% | <span style="color: red; font-weight: bold;">+9,97%</span> | -10,49% | <span style="color: red; font-weight: bold;">+8,15%</span> | -2,39% | -1,69% | -2,78% | <span style="color: red; font-weight: bold;">+8,56%</span> |
+| 45-49 | — | -5,23% | <span style="color: red; font-weight: bold;">+2,85%</span> | <span style="color: red; font-weight: bold;">+2,47%</span> | -9,73% | <span style="color: red; font-weight: bold;">+11,35%</span> | -6,64% | <span style="color: red; font-weight: bold;">+3,62%</span> | -7,05% |
+| 50-54 | — | <span style="color: red; font-weight: bold;">+0,83%</span> | -2,83% | -5,97% | <span style="color: red; font-weight: bold;">+3,41%</span> | <span style="color: red; font-weight: bold;">+6,50%</span> | -8,98% | -1,44% | -4,90% |
+| 55-59 | — | -3,82% | <span style="color: red; font-weight: bold;">+2,64%</span> | -9,77% | <span style="color: red; font-weight: bold;">+4,07%</span> | -0,41% | -3,11% | -6,13% | -1,72% |
+| 60-64 | — | -3,00% | -1,97% | -3,50% | <span style="color: red; font-weight: bold;">+5,24%</span> | <span style="color: red; font-weight: bold;">+4,35%</span> | -2,88% | -6,35% | -5,05% |
+| 65-69 | — | -4,65% | <span style="color: red; font-weight: bold;">+0,99%</span> | -1,66% | <span style="color: red; font-weight: bold;">+1,77%</span> | <span style="color: red; font-weight: bold;">+4,70%</span> | -3,11% | -7,91% | -0,38% |
+| 70-74 | — | <span style="color: red; font-weight: bold;">+1,58%</span> | -0,37% | -1,94% | <span style="color: red; font-weight: bold;">+6,65%</span> | <span style="color: red; font-weight: bold;">+1,21%</span> | -4,52% | -3,27% | -4,54% |
+| 75-79 | — | -0,80% | -0,43% | -1,04% | <span style="color: red; font-weight: bold;">+12,01%</span> | -0,03% | -0,16% | -2,95% | -3,20% |
+| 80-84 | — | <span style="color: red; font-weight: bold;">+1,05%</span> | -1,57% | -3,04% | <span style="color: red; font-weight: bold;">+7,05%</span> | -2,72% | <span style="color: red; font-weight: bold;">+0,25%</span> | -3,46% | -2,01% |
+| 85-89 | — | <span style="color: red; font-weight: bold;">+1,91%</span> | -1,54% | -1,06% | <span style="color: red; font-weight: bold;">+4,52%</span> | -1,59% | <span style="color: red; font-weight: bold;">+0,77%</span> | -3,57% | -3,00% |
+| 90-94 | — | <span style="color: red; font-weight: bold;">+1,11%</span> | <span style="color: red; font-weight: bold;">+0,24%</span> | -0,51% | <span style="color: red; font-weight: bold;">+1,79%</span> | -1,05% | <span style="color: red; font-weight: bold;">+1,03%</span> | -1,04% | -1,74% |
+| 95-99 | — | <span style="color: red; font-weight: bold;">+0,07%</span> | -0,11% | -0,27% | <span style="color: red; font-weight: bold;">+0,59%</span> | <span style="color: red; font-weight: bold;">+0,08%</span> | <span style="color: red; font-weight: bold;">+0,52%</span> | -0,75% | -0,53% |
+| 100+ | — | — | -4,09% | <span style="color: red; font-weight: bold;">+5,71%</span> | -1,50% | -1,00% | <span style="color: red; font-weight: bold;">+4,91%</span> | -4,18% | -1,05% |
+| **Alle Alter (0–100)** | — | **<span style="color: red; font-weight: bold;">+12,01%</span>** | **-1,31%** | **-1,32%** | **<span style="color: red; font-weight: bold;">+6,04%</span>** | **-1,23%** | **<span style="color: red; font-weight: bold;">+4,10%</span>** | **-6,31%** | **-4,41%** |
 
 ## 📉 Analyse und Ergebnisse
 
