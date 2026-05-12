@@ -101,6 +101,23 @@ Die Analyse zeigt:
 | 100+ | — | — | -4,09% | <span style="color: red; font-weight: bold;">+5,71%</span> | -1,50% | -1,00% | <span style="color: red; font-weight: bold;">+4,91%</span> | -4,18% | -1,05% |
 | **Alle Alter (0–100)** | — | **<span style="color: red; font-weight: bold;">+12,01%</span>** | **-1,31%** | **-1,32%** | **<span style="color: red; font-weight: bold;">+6,04%</span>** | **-1,23%** | **<span style="color: red; font-weight: bold;">+4,10%</span>** | **-6,31%** | **-4,41%** |
 
+## ⚖️ Gewichtete Durchschnittliche Änderungen
+
+Die folgende Tabelle zeigt die **gewichteten Durchschnitte der Sterblichkeitsänderungen**, gewichtet nach den Sterbewahrscheinlichkeiten der jeweiligen Altersgruppen (2024-Baseline). Dies berücksichtigt, dass Veränderungen in älteren Altersgruppen (höhere Mortalität) einen größeren Einfluss auf die Gesamtsterblichkeit haben.
+
+| Jahr | Gewichtete Änderung | Trend |
+|---|---|---|
+| 2017 | <span style="color: red; font-weight: bold;">+0,48%</span> | Leichte Verschlechterung |
+| 2018 | -0,97% | Verbesserung |
+| 2019 | -0,12% | Leichte Verbesserung |
+| 2020 | <span style="color: red; font-weight: bold;">+2,80%</span> | 🔴 **Pandemiespitze** |
+| 2021 | -0,50% | Leichte Verbesserung |
+| 2022 | <span style="color: red; font-weight: bold;">+0,82%</span> | Erhöhte Sterblichkeit |
+| 2023 | -2,58% | 🟢 **Starke Erholung** |
+| 2024 | -1,78% | 🟢 Anhaltendes Absinken |
+
+**Interpretation:** Die gewichteten Daten zeigen deutlich, dass 2020 mit +2,80% das schlimmste Jahr war (Pandemie), während 2023–2024 die stärksten Verbesserungen zeigen (–2,58% und –1,78%). Dies spiegelt die altersabhängige Mortalitätsbelastung wider – ältere Menschen sind am stärksten von der Pandemie betroffen und deren Erholung ist auch am deutlichsten.
+
 ## 📉 Analyse und Ergebnisse
 
 Die Daten zeigen ein klares Bild in drei Phasen:
