@@ -47,6 +47,18 @@ Die Analyse zeigt:
 | 80-84 | 42,56% | -2,01% |
 | 90-94 | 88,54% | -1,74% |
 
+## 📉 Analyse und Ergebnisse
+
+Die Daten zeigen ein klares Bild in drei Phasen:
+
+**Vor Pandemie (2016–2019):** Gesamtrate schwankt zwischen 4,04% und 4,53%, leicht rückläufiger Trend – normale Sterblichkeitsverbesserung durch medizinischen Fortschritt.
+
+**Pandemie (2020–2022):** Die Gesamtrate springt auf Ø 4,70% – ein Anstieg von ~8% gegenüber der Baseline. Besonders auffällig: Die Altersgruppen 70–84 zeigen die stärksten absoluten Exzesse, mit +12% bei 75–79 im Jahr 2020. Der Pandemieeffekt ist eindeutig altersselektiv – unter 50 kaum messbar, ab 65 stark. 2022 ist mit 4,81% das schlimmste Jahr der gesamten Reihe.
+
+**Post-Pandemie (2023–2024):** Rascher Rückgang auf 4,51% (2023) und 4,31% (2024) – das letzte Wert ist der niedrigste der gesamten 9-Jahres-Reihe. Das deutet auf einen kombinierten Effekt hin: einerseits Normalisierung nach Pandemie, andererseits möglicherweise ein "Harvesting"-Effekt (die vulnerablen Personen, die 2020–2022 verstorben sind, fehlen nun in der Risikogruppe), plus echte Sterblichkeitsverbesserung.
+
+Der untere Chart macht das Muster bei den mittleren Altersgruppen 55–74 sehr deutlich: rote Balken während der Pandemie, grüne Balken danach – teils deutlich unter der Vorpandemiebasis.
+
 ## 🔍 Hinweise
 
 - Die Gruppe "100+" enthält nur Alter 100 (keine Daten für 101+ verfügbar)
