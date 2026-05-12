@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kumulative Sterbewahrscheinlichkeit pro Lebenshalbdekade 2016-2024</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 2200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .info-box {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 13px;
+            padding: 12px;
+            background-color: #ecf0f1;
+            border-radius: 6px;
+            border-left: 4px solid #3498db;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10px;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        th {
+            padding: 7px 3px;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid #bdc3c7;
+            white-space: nowrap;
+            min-width: 55px;
+        }
+
+        th.halfdeckade {
+            text-align: left;
+            min-width: 95px;
+            padding-left: 12px;
+        }
+
+        th.year-header {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            font-weight: 700;
+            font-size: 11px;
+            padding: 9px 3px;
+        }
+
+        td {
+            padding: 5px 3px;
+            border: 1px solid #ecf0f1;
+            text-align: center;
+        }
+
+        td.halfdeckade {
+            text-align: left;
+            font-weight: 600;
+            background-color: #ecf0f1;
+            padding-left: 12px;
+            position: sticky;
+            left: 0;
+            z-index: 5;
+        }
+
+        td.no-data {
+            background-color: #f5f5f5;
+            color: #999;
+            font-style: italic;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #f8f9fa;
+        }
+
+        tbody tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        .value {
+            font-weight: 600;
+            color: #2c3e50;
+            font-family: 'Courier New', monospace;
+            font-size: 10px;
+        }
+
+        .change {
+            font-size: 8px;
+            margin-top: 1px;
+            font-weight: 600;
+        }
+
+        .positive {
+            color: #e74c3c;
+        }
+
+        .negative {
+            color: #27ae60;
+        }
+
+        .neutral {
+            color: #7f8c8d;
+        }
+
+        .legend {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-left: 5px solid #2c3e50;
+            border-radius: 8px;
+        }
+
+        .legend h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .legend-item {
+            margin: 8px 0;
+            color: #34495e;
+            line-height: 1.6;
+            font-size: 13px;
+        }
+
+        .info {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #ecf0f1;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .info ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .info li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Kumulative Sterbewahrscheinlichkeit pro Lebenshalbdekade</h1>
+        <p class="subtitle">Österreich 2016-2024 | Männer und Frauen kombiniert</p>
+        <div class="info-box">
+            <strong>Hinweis:</strong> Die Werte zeigen die Wahrscheinlichkeit, dass eine Person während der gesamten 5-Jahre-Halbdekade verstirbt.
+            <br/>Die Gruppe "100+" enthält nur Alter 100 (keine Daten für 101+ verfügbar)
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="halfdeckade">Alter</th>
+                        <th class="year-header" colspan="2">2016</th>
+                        <th class="year-header" colspan="2">2017</th>
+                        <th class="year-header" colspan="2">2018</th>
+                        <th class="year-header" colspan="2">2019</th>
+                        <th class="year-header" colspan="2">2020</th>
+                        <th class="year-header" colspan="2">2021</th>
+                        <th class="year-header" colspan="2">2022</th>
+                        <th class="year-header" colspan="2">2023</th>
+                        <th class="year-header" colspan="2">2024</th>
+                    </tr>
+                    <tr>
+                        <th class="halfdeckade"></th>
+                        <th>Wert %</th>
+                        <th>Änd.%</th>
+                        <th>Wert %</th>
+                        <th>Änd.%</th>
+                        <th>Wert %</th>
+                        <th>Änd.%</th>
+                        <th>Wert %</th>
+                        <th>Änd.%</th>
+                        <th>Wert %</th>
+                        <th>Änd.%</th>
+                        <th>Wert %</th>
+                        <th>Änd.%</th>
+                        <th>Wert %</th>
+                        <th>Änd.%</th>
+                        <th>Wert %</th>
+                        <th>Änd.%</th>
+                        <th>Wert %</th>
+                        <th>Änd.%</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="halfdeckade">0-4</td>
+                    <td class="no-data">—</td>
+                    <td class="no-data">—</td>
+                    <td class="no-data">—</td>
+                    <td class="no-data">—</td>
+                    <td class="no-data">—</td>
+                    <td class="no-data">—</td>
+                    <td class="no-data">—</td>
+                    <td class="no-data">—</td>
+                    <td class="no-data">—</td>
+                    <td class="no-data">—</td>
+                    <td class="no-data">—</td>
+                    <td class="no-data">—</td>
+                    <td class="no-data">—</td>
+                    <td class="no-data">—</td>
+                    <td class="no-data">—</td>
+                    <td class="no-data">—</td>
+                    <td class="no-data">—</td>
+                    <td class="no-data">—</td>
+                </tr>
+                <tr>
+                    <td class="halfdeckade">5-9</td>
+                    <td class="value">0.08%</td>
+                    <td class="change">—</td>
+                    <td class="value">0.06%</td>
+                    <td class="change"><span class="negative">▼ -27.70%</span></td>
+                    <td class="value">0.07%</td>
+                    <td class="change"><span class="positive">▲ 21.66%</span></td>
+                    <td class="value">0.07%</td>
+                    <td class="change"><span class="negative">▼ -1.37%</span></td>
+                    <td class="value">0.06%</td>
+                    <td class="change"><span class="negative">▼ -13.89%</span></td>
+                    <td class="value">0.06%</td>
+                    <td class="change"><span class="negative">▼ -6.45%</span></td>
+                    <td class="value">0.08%</td>
+                    <td class="change"><span class="positive">▲ 34.47%</span></td>
+                    <td class="value">0.07%</td>
+                    <td class="change"><span class="negative">▼ -8.97%</span></td>
+                    <td class="value">0.09%</td>
+                    <td class="change"><span class="positive">▲ 23.93%</span></td>
+                </tr>
+                <tr>
+                    <td class="halfdeckade">10-14</td>
+                    <td class="value">0.08%</td>
+                    <td class="change">—</td>
+                    <td class="value">0.09%</td>
+                    <td class="change"><span class="positive">▲ 19.22%</span></td>
+                    <td class="value">0.08%</td>
+                    <td class="change"><span class="negative">▼ -18.27%</span></td>
+                    <td class="value">0.10%</td>
+                    <td class="change"><span class="positive">▲ 27.62%</span></td>
+                    <td class="value">0.09%</td>
+                    <td class="change"><span class="negative">▼ -8.24%</span></td>
+                    <td class="value">0.07%</td>
+                    <td class="change"><span class="negative">▼ -23.59%</span></td>
+                    <td class="value">0.11%</td>
+                    <td class="change"><span class="positive">▲ 55.85%</span></td>
+                    <td class="value">0.09%</td>
+                    <td class="change"><span class="negative">▼ -10.37%</span></td>
+                    <td class="value">0.06%</td>
+                    <td class="change"><span class="negative">▼ -31.57%</span></td>
+                </tr>
+                <tr>
+                    <td class="halfdeckade">15-19</td>
+                    <td class="value">0.29%</td>
+                    <td class="change">—</td>
+                    <td class="value">0.27%</td>
+                    <td class="change"><span class="negative">▼ -7.52%</span></td>
+                    <td class="value">0.27%</td>
+                    <td class="change"><span class="negative">▼ -1.11%</span></td>
+                    <td class="value">0.26%</td>
+                    <td class="change"><span class="negative">▼ -1.87%</span></td>
+                    <td class="value">0.28%</td>
+                    <td class="change"><span class="positive">▲ 6.10%</span></td>
+                    <td class="value">0.29%</td>
+                    <td class="change"><span class="positive">▲ 6.11%</span></td>
+                    <td class="value">0.31%</td>
+                    <td class="change"><span class="positive">▲ 5.41%</span></td>
+                    <td class="value">0.36%</td>
+                    <td class="change"><span class="positive">▲ 15.09%</span></td>
+                    <td class="value">0.33%</td>
+                    <td class="change"><span class="negative">▼ -6.41%</span></td>
+                </tr>
+                <tr>
+                    <td class="halfdeckade">20-24</td>
+                    <td class="value">0.35%</td>
+                    <td class="change">—</td>
+                    <td class="value">0.31%</td>
+                    <td class="change"><span class="negative">▼ -11.35%</span></td>
+                    <td class="value">0.35%</td>
+                    <td class="change"><span class="positive">▲ 11.20%</span></td>
+                    <td class="value">0.35%</td>
+                    <td class="change"><span class="positive">▲ 0.57%</span></td>
+                    <td class="value">0.32%</td>
+                    <td class="change"><span class="negative">▼ -7.44%</span></td>
+                    <td class="value">0.38%</td>
+                    <td class="change"><span class="positive">▲ 18.55%</span></td>
+                    <td class="value">0.38%</td>
+                    <td class="change"><span class="neutral">= 0.26%</span></td>
+                    <td class="value">0.37%</td>
+                    <td class="change"><span class="negative">▼ -3.64%</span></td>
+                    <td class="value">0.37%</td>
+                    <td class="change"><span class="positive">▲ 1.35%</span></td>
+                </tr>
+                <tr>
+                    <td class="halfdeckade">25-29</td>
+                    <td class="value">0.38%</td>
+                    <td class="change">—</td>
+                    <td class="value">0.40%</td>
+                    <td class="change"><span class="positive">▲ 7.15%</span></td>
+                    <td class="value">0.39%</td>
+                    <td class="change"><span class="negative">▼ -2.47%</span></td>
+                    <td class="value">0.40%</td>
+                    <td class="change"><span class="positive">▲ 0.76%</span></td>
+                    <td class="value">0.32%</td>
+                    <td class="change"><span class="negative">▼ -18.36%</span></td>
+                    <td class="value">0.38%</td>
+                    <td class="change"><span class="positive">▲ 17.87%</span></td>
+                    <td class="value">0.41%</td>
+                    <td class="change"><span class="positive">▲ 8.36%</span></td>
+                    <td class="value">0.37%</td>
+                    <td class="change"><span class="negative">▼ -10.13%</span></td>
+                    <td class="value">0.39%</td>
+                    <td class="change"><span class="positive">▲ 4.30%</span></td>
+                </tr>
+                <tr>
+                    <td class="halfdeckade">30-34</td>
+                    <td class="value">0.51%</td>
+                    <td class="change">—</td>
+                    <td class="value">0.46%</td>
+                    <td class="change"><span class="negative">▼ -10.72%</span></td>
+                    <td class="value">0.50%</td>
+                    <td class="change"><span class="positive">▲ 10.26%</span></td>
+                    <td class="value">0.52%</td>
+                    <td class="change"><span class="positive">▲ 4.36%</span></td>
+                    <td class="value">0.52%</td>
+                    <td class="change"><span class="negative">▼ -1.33%</span></td>
+                    <td class="value">0.52%</td>
+                    <td class="change"><span class="positive">▲ 1.16%</span></td>
+                    <td class="value">0.49%</td>
+                    <td class="change"><span class="negative">▼ -6.84%</span></td>
+                    <td class="value">0.49%</td>
+                    <td class="change"><span class="neutral">= -0.20%</span></td>
+                    <td class="value">0.52%</td>
+                    <td class="change"><span class="positive">▲ 6.33%</span></td>
+                </tr>
+                <tr>
+                    <td class="halfdeckade">35-39</td>
+                    <td class="value">0.65%</td>
+                    <td class="change">—</td>
+                    <td class="value">0.67%</td>
+                    <td class="change"><span class="positive">▲ 2.60%</span></td>
+                    <td class="value">0.68%</td>
+                    <td class="change"><span class="positive">▲ 1.49%</span></td>
+                    <td class="value">0.65%</td>
+                    <td class="change"><span class="negative">▼ -3.96%</span></td>
+                    <td class="value">0.66%</td>
+                    <td class="change"><span class="positive">▲ 1.07%</span></td>
+                    <td class="value">0.74%</td>
+                    <td class="change"><span class="positive">▲ 11.93%</span></td>
+                    <td class="value">0.73%</td>
+                    <td class="change"><span class="negative">▼ -1.08%</span></td>
+                    <td class="value">0.74%</td>
+                    <td class="change"><span class="positive">▲ 1.22%</span></td>
+                    <td class="value">0.78%</td>
+                    <td class="change"><span class="positive">▲ 6.20%</span></td>
+                </tr>
+                <tr>
+                    <td class="halfdeckade">40-44</td>
+                    <td class="value">1.03%</td>
+                    <td class="change">—</td>
+                    <td class="value">1.01%</td>
+                    <td class="change"><span class="negative">▼ -1.73%</span></td>
+                    <td class="value">1.11%</td>
+                    <td class="change"><span class="positive">▲ 9.97%</span></td>
+                    <td class="value">1.00%</td>
+                    <td class="change"><span class="negative">▼ -10.49%</span></td>
+                    <td class="value">1.08%</td>
+                    <td class="change"><span class="positive">▲ 8.15%</span></td>
+                    <td class="value">1.05%</td>
+                    <td class="change"><span class="negative">▼ -2.39%</span></td>
+                    <td class="value">1.04%</td>
+                    <td class="change"><span class="negative">▼ -1.69%</span></td>
+                    <td class="value">1.01%</td>
+                    <td class="change"><span class="negative">▼ -2.78%</span></td>
+                    <td class="value">1.09%</td>
+                    <td class="change"><span class="positive">▲ 8.56%</span></td>
+                </tr>
+                <tr>
+                    <td class="halfdeckade">45-49</td>
+                    <td class="value">1.71%</td>
+                    <td class="change">—</td>
+                    <td class="value">1.62%</td>
+                    <td class="change"><span class="negative">▼ -5.23%</span></td>
+                    <td class="value">1.67%</td>
+                    <td class="change"><span class="positive">▲ 2.85%</span></td>
+                    <td class="value">1.71%</td>
+                    <td class="change"><span class="positive">▲ 2.47%</span></td>
+                    <td class="value">1.55%</td>
+                    <td class="change"><span class="negative">▼ -9.73%</span></td>
+                    <td class="value">1.72%</td>
+                    <td class="change"><span class="positive">▲ 11.35%</span></td>
+                    <td class="value">1.61%</td>
+                    <td class="change"><span class="negative">▼ -6.64%</span></td>
+                    <td class="value">1.66%</td>
+                    <td class="change"><span class="positive">▲ 3.62%</span></td>
+                    <td class="value">1.55%</td>
+                    <td class="change"><span class="negative">▼ -7.05%</span></td>
+                </tr>
+                <tr>
+                    <td class="halfdeckade">50-54</td>
+                    <td class="value">2.80%</td>
+                    <td class="change">—</td>
+                    <td class="value">2.83%</td>
+                    <td class="change"><span class="positive">▲ 0.83%</span></td>
+                    <td class="value">2.75%</td>
+                    <td class="change"><span class="negative">▼ -2.83%</span></td>
+                    <td class="value">2.58%</td>
+                    <td class="change"><span class="negative">▼ -5.97%</span></td>
+                    <td class="value">2.67%</td>
+                    <td class="change"><span class="positive">▲ 3.41%</span></td>
+                    <td class="value">2.85%</td>
+                    <td class="change"><span class="positive">▲ 6.50%</span></td>
+                    <td class="value">2.59%</td>
+                    <td class="change"><span class="negative">▼ -8.98%</span></td>
+                    <td class="value">2.55%</td>
+                    <td class="change"><span class="negative">▼ -1.44%</span></td>
+                    <td class="value">2.43%</td>
+                    <td class="change"><span class="negative">▼ -4.90%</span></td>
+                </tr>
+                <tr>
+                    <td class="halfdeckade">55-59</td>
+                    <td class="value">4.93%</td>
+                    <td class="change">—</td>
+                    <td class="value">4.74%</td>
+                    <td class="change"><span class="negative">▼ -3.82%</span></td>
+                    <td class="value">4.87%</td>
+                    <td class="change"><span class="positive">▲ 2.64%</span></td>
+                    <td class="value">4.39%</td>
+                    <td class="change"><span class="negative">▼ -9.77%</span></td>
+                    <td class="value">4.57%</td>
+                    <td class="change"><span class="positive">▲ 4.07%</span></td>
+                    <td class="value">4.55%</td>
+                    <td class="change"><span class="neutral">= -0.41%</span></td>
+                    <td class="value">4.41%</td>
+                    <td class="change"><span class="negative">▼ -3.11%</span></td>
+                    <td class="value">4.14%</td>
+                    <td class="change"><span class="negative">▼ -6.13%</span></td>
+                    <td class="value">4.07%</td>
+                    <td class="change"><span class="negative">▼ -1.72%</span></td>
+                </tr>
+                <tr>
+                    <td class="halfdeckade">60-64</td>
+                    <td class="value">7.87%</td>
+                    <td class="change">—</td>
+                    <td class="value">7.64%</td>
+                    <td class="change"><span class="negative">▼ -3.00%</span></td>
+                    <td class="value">7.49%</td>
+                    <td class="change"><span class="negative">▼ -1.97%</span></td>
+                    <td class="value">7.22%</td>
+                    <td class="change"><span class="negative">▼ -3.50%</span></td>
+                    <td class="value">7.60%</td>
+                    <td class="change"><span class="positive">▲ 5.24%</span></td>
+                    <td class="value">7.93%</td>
+                    <td class="change"><span class="positive">▲ 4.35%</span></td>
+                    <td class="value">7.70%</td>
+                    <td class="change"><span class="negative">▼ -2.88%</span></td>
+                    <td class="value">7.22%</td>
+                    <td class="change"><span class="negative">▼ -6.35%</span></td>
+                    <td class="value">6.85%</td>
+                    <td class="change"><span class="negative">▼ -5.05%</span></td>
+                </tr>
+                <tr>
+                    <td class="halfdeckade">65-69</td>
+                    <td class="value">12.46%</td>
+                    <td class="change">—</td>
+                    <td class="value">11.88%</td>
+                    <td class="change"><span class="negative">▼ -4.65%</span></td>
+                    <td class="value">12.00%</td>
+                    <td class="change"><span class="positive">▲ 0.99%</span></td>
+                    <td class="value">11.80%</td>
+                    <td class="change"><span class="negative">▼ -1.66%</span></td>
+                    <td class="value">12.01%</td>
+                    <td class="change"><span class="positive">▲ 1.77%</span></td>
+                    <td class="value">12.57%</td>
+                    <td class="change"><span class="positive">▲ 4.70%</span></td>
+                    <td class="value">12.18%</td>
+                    <td class="change"><span class="negative">▼ -3.11%</span></td>
+                    <td class="value">11.22%</td>
+                    <td class="change"><span class="negative">▼ -7.91%</span></td>
+                    <td class="value">11.17%</td>
+                    <td class="change"><span class="neutral">= -0.38%</span></td>
+                </tr>
+                <tr>
+                    <td class="halfdeckade">70-74</td>
+                    <td class="value">18.22%</td>
+                    <td class="change">—</td>
+                    <td class="value">18.51%</td>
+                    <td class="change"><span class="positive">▲ 1.58%</span></td>
+                    <td class="value">18.44%</td>
+                    <td class="change"><span class="neutral">= -0.37%</span></td>
+                    <td class="value">18.08%</td>
+                    <td class="change"><span class="negative">▼ -1.94%</span></td>
+                    <td class="value">19.29%</td>
+                    <td class="change"><span class="positive">▲ 6.65%</span></td>
+                    <td class="value">19.52%</td>
+                    <td class="change"><span class="positive">▲ 1.21%</span></td>
+                    <td class="value">18.64%</td>
+                    <td class="change"><span class="negative">▼ -4.52%</span></td>
+                    <td class="value">18.03%</td>
+                    <td class="change"><span class="negative">▼ -3.27%</span></td>
+                    <td class="value">17.21%</td>
+                    <td class="change"><span class="negative">▼ -4.54%</span></td>
+                </tr>
+                <tr>
+                    <td class="halfdeckade">75-79</td>
+                    <td class="value">26.89%</td>
+                    <td class="change">—</td>
+                    <td class="value">26.67%</td>
+                    <td class="change"><span class="negative">▼ -0.80%</span></td>
+                    <td class="value">26.56%</td>
+                    <td class="change"><span class="neutral">= -0.43%</span></td>
+                    <td class="value">26.29%</td>
+                    <td class="change"><span class="negative">▼ -1.04%</span></td>
+                    <td class="value">29.44%</td>
+                    <td class="change"><span class="positive">▲ 12.01%</span></td>
+                    <td class="value">29.43%</td>
+                    <td class="change"><span class="neutral">= -0.03%</span></td>
+                    <td class="value">29.39%</td>
+                    <td class="change"><span class="neutral">= -0.16%</span></td>
+                    <td class="value">28.52%</td>
+                    <td class="change"><span class="negative">▼ -2.95%</span></td>
+                    <td class="value">27.61%</td>
+                    <td class="change"><span class="negative">▼ -3.20%</span></td>
+                </tr>
+                <tr>
+                    <td class="halfdeckade">80-84</td>
+                    <td class="value">44.68%</td>
+                    <td class="change">—</td>
+                    <td class="value">45.15%</td>
+                    <td class="change"><span class="positive">▲ 1.05%</span></td>
+                    <td class="value">44.44%</td>
+                    <td class="change"><span class="negative">▼ -1.57%</span></td>
+                    <td class="value">43.09%</td>
+                    <td class="change"><span class="negative">▼ -3.04%</span></td>
+                    <td class="value">46.13%</td>
+                    <td class="change"><span class="positive">▲ 7.05%</span></td>
+                    <td class="value">44.88%</td>
+                    <td class="change"><span class="negative">▼ -2.72%</span></td>
+                    <td class="value">44.99%</td>
+                    <td class="change"><span class="neutral">= 0.25%</span></td>
+                    <td class="value">43.43%</td>
+                    <td class="change"><span class="negative">▼ -3.46%</span></td>
+                    <td class="value">42.56%</td>
+                    <td class="change"><span class="negative">▼ -2.01%</span></td>
+                </tr>
+                <tr>
+                    <td class="halfdeckade">85-89</td>
+                    <td class="value">68.91%</td>
+                    <td class="change">—</td>
+                    <td class="value">70.23%</td>
+                    <td class="change"><span class="positive">▲ 1.91%</span></td>
+                    <td class="value">69.14%</td>
+                    <td class="change"><span class="negative">▼ -1.54%</span></td>
+                    <td class="value">68.41%</td>
+                    <td class="change"><span class="negative">▼ -1.06%</span></td>
+                    <td class="value">71.50%</td>
+                    <td class="change"><span class="positive">▲ 4.52%</span></td>
+                    <td class="value">70.37%</td>
+                    <td class="change"><span class="negative">▼ -1.59%</span></td>
+                    <td class="value">70.91%</td>
+                    <td class="change"><span class="positive">▲ 0.77%</span></td>
+                    <td class="value">68.38%</td>
+                    <td class="change"><span class="negative">▼ -3.57%</span></td>
+                    <td class="value">66.33%</td>
+                    <td class="change"><span class="negative">▼ -3.00%</span></td>
+                </tr>
+                <tr>
+                    <td class="halfdeckade">90-94</td>
+                    <td class="value">88.74%</td>
+                    <td class="change">—</td>
+                    <td class="value">89.73%</td>
+                    <td class="change"><span class="positive">▲ 1.11%</span></td>
+                    <td class="value">89.94%</td>
+                    <td class="change"><span class="neutral">= 0.24%</span></td>
+                    <td class="value">89.48%</td>
+                    <td class="change"><span class="negative">▼ -0.51%</span></td>
+                    <td class="value">91.09%</td>
+                    <td class="change"><span class="positive">▲ 1.79%</span></td>
+                    <td class="value">90.13%</td>
+                    <td class="change"><span class="negative">▼ -1.05%</span></td>
+                    <td class="value">91.05%</td>
+                    <td class="change"><span class="positive">▲ 1.03%</span></td>
+                    <td class="value">90.11%</td>
+                    <td class="change"><span class="negative">▼ -1.04%</span></td>
+                    <td class="value">88.54%</td>
+                    <td class="change"><span class="negative">▼ -1.74%</span></td>
+                </tr>
+                <tr>
+                    <td class="halfdeckade">95-99</td>
+                    <td class="value">97.97%</td>
+                    <td class="change">—</td>
+                    <td class="value">98.03%</td>
+                    <td class="change"><span class="neutral">= 0.07%</span></td>
+                    <td class="value">97.93%</td>
+                    <td class="change"><span class="neutral">= -0.11%</span></td>
+                    <td class="value">97.66%</td>
+                    <td class="change"><span class="neutral">= -0.27%</span></td>
+                    <td class="value">98.23%</td>
+                    <td class="change"><span class="positive">▲ 0.59%</span></td>
+                    <td class="value">98.31%</td>
+                    <td class="change"><span class="neutral">= 0.08%</span></td>
+                    <td class="value">98.82%</td>
+                    <td class="change"><span class="positive">▲ 0.52%</span></td>
+                    <td class="value">98.08%</td>
+                    <td class="change"><span class="negative">▼ -0.75%</span></td>
+                    <td class="value">97.57%</td>
+                    <td class="change"><span class="negative">▼ -0.53%</span></td>
+                </tr>
+                <tr>
+                    <td class="halfdeckade">100+</td>
+                    <td class="no-data">—</td>
+                    <td class="no-data">—</td>
+                    <td class="value">68.60%</td>
+                    <td class="change">—</td>
+                    <td class="value">65.80%</td>
+                    <td class="change"><span class="negative">▼ -4.09%</span></td>
+                    <td class="value">69.56%</td>
+                    <td class="change"><span class="positive">▲ 5.71%</span></td>
+                    <td class="value">68.51%</td>
+                    <td class="change"><span class="negative">▼ -1.50%</span></td>
+                    <td class="value">67.83%</td>
+                    <td class="change"><span class="negative">▼ -1.00%</span></td>
+                    <td class="value">71.16%</td>
+                    <td class="change"><span class="positive">▲ 4.91%</span></td>
+                    <td class="value">68.18%</td>
+                    <td class="change"><span class="negative">▼ -4.18%</span></td>
+                    <td class="value">67.46%</td>
+                    <td class="change"><span class="negative">▼ -1.05%</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="legend">
+            <h3>📝 Legende</h3>
+            <div class="legend-item">
+                <strong>Alter:</strong> 5-Jahres-Altersintervalle (z.B. 60-64 = Personen im Alter 60 bis 64 Jahre). Die Gruppe "100+" enthält nur Alter 100.
+            </div>
+            <div class="legend-item">
+                <strong>Wert %:</strong> Kumulative Sterbewahrscheinlichkeit über die gesamte 5-Jahre-Halbdekade (z.B. 7,22% = Wahrscheinlichkeit, dass eine 60-jährige Person vor Alter 65 verstirbt)
+            </div>
+            <div class="legend-item">
+                <strong>Änd.%:</strong> Prozentuale Veränderung zum Vorjahr
+            </div>
+            <div class="legend-item">
+                <strong>▼ Grün:</strong> Verbesserung (niedrigere Sterbewahrscheinlichkeit)
+            </div>
+            <div class="legend-item">
+                <strong>▲ Rot:</strong> Verschlechterung (höhere Sterbewahrscheinlichkeit)
+            </div>
+            <div class="legend-item">
+                <strong>— Grau:</strong> Keine Daten für diesen Zeitraum verfügbar
+            </div>
+        </div>
+
+        <div class="info">
+            <strong>ℹ️ Wichtige Hinweise:</strong>
+            <ul>
+                <li><strong>Kumulative Wahrscheinlichkeit pro Halbdekade:</strong> 1 - [(1 - q(x)) × (1 - q(x+1)) × (1 - q(x+2)) × (1 - q(x+3)) × (1 - q(x+4))]</li>
+                <li><strong>Altersgruppe "100+":</strong> Die Sterbetafeln enden bei Alter 100 - es gibt keine Daten für 101+. Daher zeigt "100+" nur die Jahressterbewahrscheinlichkeit für Alter 100.</li>
+                <li><strong>Überlebenden-Effekt:</strong> Menschen über 100 Jahren sind eine sehr selektive Gruppe (nur die Gesündesten), daher können ihre Sterbewahrscheinlichkeiten etwas künstlich wirken.</li>
+                <li>Männer und Frauen wurden kombiniert (Durchschnitt beider Geschlechter).</li>
+                <li>Zeitraum: 2016-2024 (9 Jahre Datenreihe)</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
