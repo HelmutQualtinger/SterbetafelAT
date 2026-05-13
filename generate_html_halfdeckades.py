@@ -60,11 +60,27 @@ def generate_halfdeckade_html(csv_file, output_file):
     pivot.loc['Alle Alter (Kumulativ)'] = all_ages_total
 
     # Definiere alle möglichen Halbdekaden
-    halfdeckade_order = [f"{i}-{i+4}" for i in range(0, 100, 5)] + ["100+", "Alle Alter (Kumulativ)", "Alle Alter (0-100)"]
+    halfdeckade_order = [f"{i}-{i+4}" for i in range(0, 100, 5)] + ["100+", "Alle Alter (Kumulativ)", "Alle Alter (0-100)", "Alle Alter (0-100) vs Baseline"]
 
     # Berechne durchschnittliche Sterbewahrscheinlichkeit pro Jahr über alle einzelnen Alter (0-100)
     all_ages_avg = filtered.groupby('Jahr')['Sterbewahrscheinlichkeit (q(x))'].mean()
     pivot.loc['Alle Alter (0-100)'] = all_ages_avg
+
+    # NEUE BASELINE: Durchschnitt der Jahre 2016-2019 und 2023-2024
+    baseline_years = [2016, 2017, 2018, 2019, 2023, 2024]
+    baseline_value = all_ages_avg[baseline_years].mean()
+
+    # Berechne Abweichungen zur Baseline für alle Jahre
+    baseline_deviations = {}
+    for year in all_ages_avg.index:
+        baseline_deviations[year] = ((all_ages_avg[year] - baseline_value) / baseline_value) * 100
+
+    # Füge Baseline-Abweichungen zur Pivot hinzu
+    baseline_dev_series = pd.Series(baseline_deviations)
+    pivot.loc['Alle Alter (0-100) vs Baseline'] = baseline_dev_series / 100  # Als Dezimalzahl für Konsistenz
+
+    # Format baseline value for HTML
+    baseline_html = f"{baseline_value*100:.4f}%"
 
     # HTML-Tabelle erstellen
     html_content = """<!DOCTYPE html>
@@ -277,6 +293,7 @@ def generate_halfdeckade_html(csv_file, output_file):
         <div class="info-box">
             <strong>Hinweis:</strong> Die Werte zeigen die Wahrscheinlichkeit, dass eine Person während der gesamten 5-Jahre-Halbdekade verstirbt.
             <br/>Die Gruppe "100+" enthält nur Alter 100 (keine Daten für 101+ verfügbar)
+            <br/><strong>Baseline (2016-2019 + 2023-2024):</strong> """ + baseline_html + """ - Die letzte Reihe "Alle Alter (0-100) vs Baseline" zeigt die prozentuale Abweichung
         </div>
 
         <div class="table-wrapper">
@@ -314,7 +331,7 @@ def generate_halfdeckade_html(csv_file, output_file):
         row_data = pivot.loc[halfdeckade] if halfdeckade in pivot.index else None
 
         # Markiere "Alle Alter"-Zeile mit CSS-Klasse
-        row_class = ' class="total"' if halfdeckade == "Alle Alter" else ''
+        row_class = ' class="total"' if "Alle Alter" in halfdeckade else ''
         html_content += f"""                <tr{row_class}>
                     <td class="halfdeckade">{halfdeckade}</td>
 """
@@ -326,13 +343,24 @@ def generate_halfdeckade_html(csv_file, output_file):
 """
             else:
                 value = row_data[year]
-                value_percent = value * 100
 
-                html_content += f"""                    <td class="value">{value_percent:.2f}%</td>
+                # Spezialbehandlung für "vs Baseline" Reihe: zeige als Prozentsatz der Abweichung
+                if halfdeckade == "Alle Alter (0-100) vs Baseline":
+                    value_percent = value * 100  # bereits in %
+                    display_text = f"{value_percent:+.2f}%"
+                else:
+                    value_percent = value * 100
+                    display_text = f"{value_percent:.2f}%"
+
+                html_content += f"""                    <td class="value">{display_text}</td>
 """
 
                 # Berechne Änderung zum Vorjahr (auch für 2024)
-                if i > 0:
+                # Für "vs Baseline" Reihe: keine Änderung anzeigen
+                if halfdeckade == "Alle Alter (0-100) vs Baseline":
+                    html_content += f"""                    <td class="change">—</td>
+"""
+                elif i > 0:
                     prev_year = years[i - 1]
                     prev_year_value = row_data.get(prev_year, np.nan)
 
