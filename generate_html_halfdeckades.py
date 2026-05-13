@@ -355,10 +355,26 @@ def generate_halfdeckade_html(csv_file, output_file):
                 html_content += f"""                    <td class="value">{display_text}</td>
 """
 
-                # Berechne Änderung zum Vorjahr (auch für 2024)
-                # Für "vs Baseline" Reihe: keine Änderung anzeigen
+                # Berechne Änderung zum Vorjahr oder zur Baseline für 2016
+                # Spezialbehandlung für "Alle Alter" Reihen: zeige für 2016 die Abweichung zur Baseline
                 if halfdeckade == "Alle Alter (0-100) vs Baseline":
                     html_content += f"""                    <td class="change">—</td>
+"""
+                elif halfdeckade in ["Alle Alter (Kumulativ)", "Alle Alter (0-100)"] and i == 0:
+                    # Für 2016 in diesen Reihen: zeige Abweichung zur Baseline
+                    change_to_baseline = ((value - baseline_value) / baseline_value) * 100
+
+                    if change_to_baseline < -0.5:
+                        color_class = "negative"
+                        sign = "▼"
+                    elif change_to_baseline > 0.5:
+                        color_class = "positive"
+                        sign = "▲"
+                    else:
+                        color_class = "neutral"
+                        sign = "="
+
+                    html_content += f"""                    <td class="change"><span class="{color_class}">{sign} {change_to_baseline:.2f}%</span></td>
 """
                 elif i > 0:
                     prev_year = years[i - 1]
@@ -383,7 +399,7 @@ def generate_halfdeckade_html(csv_file, output_file):
                         html_content += f"""                    <td class="change">—</td>
 """
                 else:
-                    # Erstes Jahr: keine Änderung zum Vorjahr
+                    # Andere Reihen im ersten Jahr: keine Änderung
                     html_content += f"""                    <td class="change">—</td>
 """
 
